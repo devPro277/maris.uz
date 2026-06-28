@@ -504,115 +504,75 @@ function Courses() {
   );
 }
 
-/* ---------------- RESULTS ---------------- */
+/* ---------------- RESULTS / NATIJALAR ---------------- */
 function Results() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const results = [
-    { name: "Aziza Karimova", badge: "IELTS 7.5", year: "2025", img: "/src/assets/student-1.jpg" },
-    { name: "Jasur Tursunov", badge: "IELTS 8.0", year: "2025", img: "/src/assets/student-2.jpg" },
-    { name: "Madina Nazarova", badge: "CEFR C1", year: "2024", img: "/src/assets/student-3.jpg" },
-    { name: "Otabek Yusupov", badge: "CEFR C1", year: "2025", img: "/src/assets/student-4.jpg" },
-    { name: "Shahnoza Olimova", badge: "IELTS 7.0", year: "2024", img: "/src/assets/student-1.jpg" },
-    { name: "Sardor Rasulov", badge: "CEFR B2", year: "2025", img: "/src/assets/student-2.jpg" },
+  const students = [
+    {
+      name: "Asalxo'jaeva Madina",
+      result: "IELTS 7.5",
+      sub: "Listening: 8.5 | Speaking: 7.5",
+      img: student1, // Tepadagi import qilingan student1 o'zgaruvchisi
+    },
+    {
+      name: "Abduvaliyev Islom",
+      result: "CEFR C1",
+      sub: "92 / 100 ball — Grammatika ustasi",
+      img: student2, // student2 o'zgaruvchisi
+    },
+    {
+      name: "Tursunov Javohir",
+      result: "SAT 1450",
+      sub: "Math: 780 | Reading & Writing: 670",
+      img: student3, // student3 o'zgaruvchisi
+    },
+    {
+      name: "Karimova Zilola",
+      result: "IELTS 7.0",
+      sub: "3 oyda noldan tayyorlanib",
+      img: student4, // student4 o'zgaruvchisi
+    },
   ];
 
-  const handleScroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 320; 
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <section id="results" className="relative py-24 lg:py-32 overflow-hidden bg-white">
+    <section id="results" className="py-24 bg-zinc-50/50 border-b border-zinc-100">
       <div className="mx-auto max-w-7xl px-6">
-        
-        {/* TEPA QISMI: Sarlavha va Navigatsiya tugmalari */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <SectionLabel>NATIJALAR</SectionLabel>
-            <h2 className="mt-4 font-display text-4xl font-extrabold text-[#0b1f3d] sm:text-5xl">
-              O'quvchilarimiz <span className="text-[#F5B81F] italic font-black">natijalari</span>
-            </h2>
-          </div>
-          
-          <div className="flex items-center justify-between md:justify-end gap-5 w-full md:w-auto">
-            <p className="text-[#071326]/60 text-sm font-medium max-w-xs hidden md:block">
-              Yuzlab o'quvchilarimiz xalqaro imtihonlardan yuqori natijalarni qo'lga kiritmoqda.
-            </p>
-            
-            {/* PREMIYUM STRELKALAR (OQ USLUBDA) */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => handleScroll("left")}
-                className="h-12 w-12 rounded-full border border-zinc-200 bg-white shadow-sm hover:border-[#F5B81F] text-[#071326] hover:text-[#F5B81F] transition-all duration-300 grid place-items-center group"
-                aria-label="Oldingisi"
-              >
-                <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5 stroke-[2.5]" />
-              </button>
-              <button
-                onClick={() => handleScroll("right")}
-                className="h-12 w-12 rounded-full border border-zinc-200 bg-white shadow-sm hover:border-[#F5B81F] text-[#071326] hover:text-[#F5B81F] transition-all duration-300 grid place-items-center group"
-                aria-label="Keyingisi"
-              >
-                <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 stroke-[2.5]" />
-              </button>
-            </div>
-          </div>
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <SectionLabel>NATIJALARIMIZ</SectionLabel>
+          <h2 className="mt-4 font-display text-4xl font-extrabold text-[#071326] sm:text-5xl">
+            Bizning <span className="text-[#F5B81F] italic font-black">g'oliblarimiz</span>
+          </h2>
+          <p className="mt-4 text-base font-medium text-[#071326]/70">
+            Maris Academy o'quvchilarining xalqaro va milliy imtihonlarda qayd etgan yuqori natijalari.
+          </p>
         </div>
 
-        {/* KARTALAR RO'YXATI */}
-        <div 
-          ref={scrollRef}
-          className="mt-12 -mx-6 px-6 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          <style>{`
-            div::-webkit-scrollbar { display: none; }
-          `}</style>
-
-          {results.map((r, i) => (
-            <article
-              key={i}
-              className="group relative w-72 shrink-0 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-md shadow-zinc-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-[#F5B81F]/30 snap-start"
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {students.map((s, index) => (
+            <div 
+              key={index} 
+              className="group relative overflow-hidden rounded-3xl border border-zinc-200/60 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="relative h-80 overflow-hidden">
+              <div className="overflow-hidden rounded-2xl h-64 bg-zinc-100 relative">
                 <img 
-                  src={r.img} 
-                  alt={r.name} 
-                  width={768} 
-                  height={896}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  src={s.img} // To'g'ri o'zgaruvchi ulandi
+                  alt={s.name} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/80 via-[#071326]/20 to-transparent" />
-                
-                {/* NISBATI / BADGE (PREMIUM OLTIN) */}
-                <div className="absolute top-4 right-4 rounded-full bg-[#F5B81F] px-3 py-1 text-[11px] font-black tracking-wider text-white shadow-sm">
-                  {r.badge}
-                </div>
-                
-                {/* MATNLARI */}
-                <div className="absolute bottom-5 left-5 right-5">
-                  <div className="text-base font-extrabold tracking-wide text-white group-hover:text-[#F5B81F] transition-colors duration-300">
-                    {r.name}
-                  </div>
-                  <div className="text-xs font-semibold text-zinc-300 mt-0.5">{r.badge} · {r.year}</div>
+                <div className="absolute top-3 left-3 bg-[#071326] text-[#F5B81F] text-xs font-black tracking-wide px-3 py-1.5 rounded-xl shadow-md">
+                  {s.result}
                 </div>
               </div>
-            </article>
+              <div className="mt-4 text-center">
+                <h3 className="text-lg font-extrabold text-[#071326]">{s.name}</h3>
+                <p className="mt-1 text-xs font-semibold text-[#071326]/50 uppercase tracking-wider">{s.sub}</p>
+              </div>
+            </div>
           ))}
         </div>
-        
       </div>
     </section>
   );
 }
-
 /* ---------------- GALLERY ---------------- */
 function Gallery() {
   const [activeImg, setActiveImg] = useState<{ src: string; alt: string } | null>(null);
