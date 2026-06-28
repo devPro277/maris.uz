@@ -608,7 +608,7 @@ function Results() {
       img: student1,
     },
     {
-      name: "Abduvaliyev Islom",
+      name: "Karimov Alisher",
       result: "CEFR C1",
       sub: "92 / 100 ball — Grammatika ustasi",
       img: student2,
