@@ -514,14 +514,14 @@ function Results() {
       img: student1, // Tepadagi import qilingan student1 o'zgaruvchisi
     },
     {
-      name: "Abduvaliyev Islom",
+      name: "Abdubositov Anvar",
       result: "CEFR C1",
       sub: "92 / 100 ball — Grammatika ustasi",
       img: student2, // student2 o'zgaruvchisi
     },
     {
       name: "Tursunov Javohir",
-      result: "SAT 1450",
+      result: "IELTS 6.5",
       sub: "Math: 780 | Reading & Writing: 670",
       img: student3, // student3 o'zgaruvchisi
     },
