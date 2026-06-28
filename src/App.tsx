@@ -312,14 +312,11 @@ function About() {
         {/* CHAP TOMON: RASM VA VIDEO TUGMASI */}
         <div className="relative">
           <div className="relative overflow-hidden rounded-[2rem] border border-[#F5B81F]/20 shadow-xl shadow-zinc-100">
-            <img 
-              src="/src/assets/about-classroom.jpg" 
-              alt="Maris Academy sinfxonasi" 
-              width={1280} 
-              height={960}
-              loading="lazy" 
-              className="h-full w-full object-cover aspect-[5/4]" 
-            />
+            <img
+                src={aboutClassroom} 
+                alt="Maris Academy Classroom"
+                className="rounded-3xl object-cover w-full h-full shadow-2xl"
+              />
             
             <button
               onClick={() => setIsVideoOpen(true)}
@@ -831,43 +828,61 @@ function ContactRow({ icon: Icon, label, value }: { icon: any; label: string; va
 /* ---------------- BLOG ---------------- */
 function Blog() {
   const posts = [
-    { img: "/src/assets/blog-1.jpg", date: "12 Iyun 2026", title: "Ingliz tilini 3 oyda qanday yaxshilash mumkin?" },
-    { img: "/src/assets/blog-2.jpg", date: "05 Iyun 2026", title: "IELTS 7+ olish uchun 7 ta professional maslahat" },
-    { img: "/src/assets/blog-3.jpg", date: "28 May 2026", title: "Mental arifmetika bolaning miyasini qanday rivojlantiradi" },
+    {
+      title: "Ingliz tilini 3 oyda qanday yaxshilash mumkin?",
+      sub: "Ta'lim · Motivatsiya",
+      date: "12 IYUN 2026",
+      img: blog1, // Tepadagi import qilingan blog1 o'zgaruvchisi
+    },
+    {
+      title: "IELTS 7+ olish uchun 7 ta professional maslahat",
+      sub: "Imtihon · Metodika",
+      date: "05 IYUN 2026",
+      img: blog2, // blog2 o'zgaruvchisi
+    },
+    {
+      title: "Mental arifmetika bolaning miyasini qanday rivojlantiradi",
+      sub: "Mantiq · Tezkor hisob",
+      date: "28 MAY 2026",
+      img: blog3, // blog3 o'zgaruvchisi
+    },
   ];
 
   return (
-    <section id="blog" className="relative py-24 lg:py-32 bg-white">
+    <section id="blog" className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-2 border-b border-zinc-100 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
           <div>
             <SectionLabel>BLOG</SectionLabel>
-            <h2 className="mt-4 font-display text-4xl font-extrabold text-[#0b1f3d] sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold text-[#071326] sm:text-5xl">
               Foydali <span className="text-[#F5B81F] italic font-black">maqolalar</span>
             </h2>
           </div>
-          <p className="text-[#071326]/60 font-medium md:text-right max-w-md md:ml-auto">
+          <p className="max-w-md text-sm font-semibold text-[#071326]/60 md:text-right">
             Ta'lim, motivatsiya va imtihonlarga tayyorgarlik bo'yicha eng so'nggi materiallar.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {posts.map((p, i) => (
-            <article key={i} className="group rounded-[2rem] border border-zinc-200 bg-white overflow-hidden shadow-md shadow-zinc-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-[#F5B81F]/30">
-              <div className="relative h-52 overflow-hidden">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {posts.map((p, index) => (
+            <article key={index} className="group overflow-hidden rounded-3xl border border-zinc-100 bg-zinc-50/30 p-4 transition-all hover:shadow-lg">
+              <div className="overflow-hidden rounded-2xl h-52 bg-zinc-200">
                 <img 
-                  src={p.img} 
+                  src={p.img} // To'g'ri o'zgaruvchi ulandi
                   alt={p.title} 
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/20 via-transparent to-transparent" />
               </div>
-              <div className="p-7">
-                <div className="text-[11px] font-black tracking-wider text-[#F5B81F] uppercase">{p.date}</div>
-                <h3 className="mt-3 font-display text-xl font-extrabold text-[#071326] leading-snug group-hover:text-[#F5B81F] transition-colors duration-300">{p.title}</h3>
-                <a href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#F5B81F] transition-all hover:gap-3">
-                  Batafsil <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
+              <div className="mt-4 px-2">
+                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[#F5B81F]">
+                  <span>{p.sub}</span>
+                  <span className="text-zinc-400">{p.date}</span>
+                </div>
+                <h3 className="mt-2 text-lg font-bold text-[#071326] line-clamp-2 group-hover:text-[#F5B81F] transition-colors">
+                  {p.title}
+                </h3>
+                <a href="#contact" className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#F5B81F]">
+                  Batafsil <ArrowUpRight className="h-3 w-3" />
                 </a>
               </div>
             </article>
@@ -877,7 +892,6 @@ function Blog() {
     </section>
   );
 }
-
 /* ---------------- FAQ ---------------- */
 function FAQ() {
   const items = [
